@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiNutrias - Safari</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --discord: #5865F2;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --bg-dark: #0a1628;
+            --bg-card: #0f1e36;
+            --bg-hover: #1a2a44;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #1a3a5c;
+            --safari-green: #10b981;
+            --safari-dark: #065f46;
+            --safari-light: #6ee7b7;
+            --water-light: #06b6d4;
+            --gold: #fbbf24;
+            --shiny: #ffd700;
+            --sp-blue: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--safari-green);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--safari-green), var(--water-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .logo:hover { transform: scale(1.05); }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--safari-green), var(--water-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        nav { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background: var(--bg-hover);
+            color: var(--safari-green);
+        }
+
+        .nav-discord {
+            background: var(--discord) !important;
+            color: white !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 25px !important;
+        }
+
+        .hero {
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--safari-green);
+            border-radius: 25px;
+            color: var(--safari-green);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--safari-green) 50%, var(--water-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero-stat { text-align: center; }
+
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--safari-green), var(--water-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section { margin-bottom: 5rem; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--safari-green);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #fff, var(--safari-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-subtitle strong { color: var(--text-primary); }
+
+        /* Descarga Mapa */
+        .download-map-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-map-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .download-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .download-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .download-info p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-features { list-style: none; margin-bottom: 2rem; }
+
+        .download-features li {
+            padding: 0.6rem 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .download-features li::before {
+            content: '✓';
+            background: var(--primary);
+            color: white;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+        }
+
+        .download-steps {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .download-steps h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            width: 35px; height: 35px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 { font-size: 1rem; margin-bottom: 0.3rem; color: var(--text-primary); }
+        .step-content p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+        .step-content code {
+            background: var(--bg-dark);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--safari-green);
+        }
+
+        /* Tickets */
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ticket-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--ticket-color, var(--safari-green)), var(--ticket-color-light, var(--water-light)));
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--ticket-color, var(--safari-green));
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .ticket-icon {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--ticket-color, var(--safari-green)), var(--ticket-color-light, var(--water-light)));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .ticket-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 0.5rem; }
+
+        .ticket-price {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .ticket-features { list-style: none; text-align: left; margin-bottom: 1.5rem; }
+
+        .ticket-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ticket-features li::before {
+            content: '✓';
+            color: var(--safari-green);
+            font-weight: bold;
+        }
+
+        .ticket-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--ticket-color, var(--safari-green)), var(--ticket-color-light, var(--water-light)));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .ticket-btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+
+        .ticket-popular {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--gold);
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Shiny */
+        .shiny-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(251, 191, 36, 0.05));
+            border: 2px solid var(--shiny);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shiny-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent 70%);
+            border-radius: 50%;
+            animation: shinyPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes shinyPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .shiny-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .shiny-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--shiny), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .shiny-info p { color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8; }
+
+        .shiny-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+        .shiny-stat {
+            background: var(--bg-card);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--shiny);
+            text-align: center;
+        }
+
+        .shiny-stat-value { font-size: 1.8rem; font-weight: 900; color: var(--shiny); margin-bottom: 0.3rem; }
+        .shiny-stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; }
+
+        .shiny-pokemon-showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+        .shiny-pokemon {
+            background: var(--bg-card);
+            border: 2px solid var(--shiny);
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: shinyGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes shinyGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        .shiny-pokemon::before {
+            content: '✨';
+            position: absolute;
+            top: 5px; right: 5px;
+            font-size: 1.2rem;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.3) rotate(180deg); opacity: 0.7; }
+        }
+
+        .shiny-pokemon img {
+            width: 80px; height: 80px;
+            filter: drop-shadow(0 0 8px var(--shiny));
+            animation: shinyFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes shinyFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .shiny-pokemon-name { font-weight: bold; margin-top: 0.5rem; font-size: 0.9rem; color: var(--shiny); }
+
+        /* Entrenadores */
+        .trainers-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(6, 182, 212, 0.05));
+            border: 1px solid var(--safari-green);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+        }
+
+        .trainers-info { text-align: center; margin-bottom: 2rem; }
+        .trainers-info p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 0.5rem; }
+        .trainers-info strong { color: var(--text-primary); font-weight: bold; }
+
+        .difficulty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+
+        .difficulty-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .difficulty-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--diff-color, var(--safari-green)), var(--diff-color-light, var(--water-light)));
+        }
+
+        .difficulty-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--diff-color, var(--safari-green));
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .difficulty-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+
+        .difficulty-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--diff-color, var(--safari-green)), var(--diff-color-light, var(--water-light)));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .difficulty-title { font-size: 1.5rem; font-weight: bold; color: var(--diff-color, var(--safari-green)); }
+        .difficulty-level { font-size: 0.9rem; color: var(--text-secondary); }
+
+        .difficulty-rewards { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+
+        .reward-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .reward-sp { background: #3b82f6; color: white; }
+        .reward-money { background: var(--success); color: white; }
+
+        .difficulty-items { list-style: none; }
+
+        .difficulty-items li {
+            padding: 0.6rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .difficulty-items li:last-child { border-bottom: none; }
+        .difficulty-items li::before { content: '🎁'; font-size: 1.2rem; }
+
+        /* Tienda */
+        .shop-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(6, 182, 212, 0.05));
+            border: 1px solid var(--safari-green);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+        }
+
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+
+        .shop-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--safari-green);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .shop-item-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+
+        .shop-item-icon {
+            width: 60px; height: 60px;
+            background: var(--bg-hover);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            border: 2px solid var(--border);
+        }
+
+        .shop-item-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem; }
+        .shop-item-description { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; flex: 1; }
+
+        .shop-item-price {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: var(--sp-blue);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            align-self: flex-start;
+        }
+
+        .shop-item.llave-safari {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--bg-card), rgba(251, 191, 36, 0.05));
+        }
+
+        .shop-item.llave-safari:hover {
+            border-color: var(--gold);
+            box-shadow: 0 15px 30px rgba(251, 191, 36, 0.2);
+        }
+
+        .shop-item.llave-safari .shop-item-icon {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-color: var(--gold);
+        }
+
+        .pack-prices { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .pack-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0.8rem;
+            background: var(--bg-hover);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .pack-price:hover { background: var(--bg-card); border-color: var(--gold); }
+        .pack-qty { font-weight: bold; color: var(--text-primary); }
+        .pack-cost { color: var(--gold); font-weight: bold; }
+
+        .pack-discount {
+            background: var(--success);
+            color: white;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 0.3rem;
+        }
+
+        /* ============ POKÉMON POR ZONA CON RAREZA ============ */
+        .pokemon-by-zone-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(6, 182, 212, 0.05));
+            border: 1px solid var(--safari-green);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+        }
+
+        .pokemon-by-zone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .pokemon-by-zone-title { flex: 1; min-width: 300px; }
+
+        .pokemon-by-zone-title h2 {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid var(--safari-green);
+            padding-left: 1rem;
+        }
+
+        .pokemon-by-zone-title p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .pokemon-by-zone-title a { color: var(--safari-green); text-decoration: underline; }
+        .pokemon-by-zone-title strong { color: var(--text-primary); }
+
+        .advice-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.1));
+            border: 2px solid var(--safari-green);
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .advice-icon {
+            width: 50px; height: 50px;
+            background: var(--safari-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .advice-text { color: var(--text-primary); font-size: 0.95rem; line-height: 1.5; }
+        .advice-text strong { color: var(--safari-green); }
+
+        .zone-filters { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+        .zone-filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .zone-filter-btn:hover {
+            border-color: var(--safari-green);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .zone-filter-btn.active {
+            background: var(--safari-green);
+            border-color: var(--safari-green);
+            color: white;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: end;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--safari-green);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .filter-group select { cursor: pointer; }
+        .filter-group select option { background: var(--bg-card); color: var(--text-primary); }
+
+        .pokemon-count {
+            text-align: right;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .pokemon-count strong { color: var(--safari-green); font-size: 1.3rem; }
+
+        /* Leyenda de rareza */
+        .rarity-legend {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .rarity-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .rarity-legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .rarity-common-dot { background: #64748b; }
+        .rarity-uncommon-dot { background: #22c55e; }
+        .rarity-rare-dot { background: #3b82f6; }
+        .rarity-epic-dot { background: #a855f7; }
+        .rarity-legendary-dot { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+
+        .zone-container {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .zone-container-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .zone-container-title { font-size: 1.5rem; font-weight: bold; }
+
+        .zone-container-count {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .pokemon-zone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .pokemon-zone-card {
+            background: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .pokemon-zone-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--safari-green);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Bordes según rareza */
+        .pokemon-zone-card.rarity-common { border-color: #64748b; }
+        .pokemon-zone-card.rarity-uncommon { border-color: #22c55e; }
+        .pokemon-zone-card.rarity-rare { border-color: #3b82f6; }
+        .pokemon-zone-card.rarity-epic { border-color: #a855f7; }
+        .pokemon-zone-card.rarity-legendary { 
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, var(--bg-dark), rgba(245, 158, 11, 0.1));
+        }
+
+        .pokemon-zone-card.rarity-legendary:hover {
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Badge de rareza */
+        .rarity-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 2;
+        }
+
+        .rarity-badge.common { background: #64748b; color: white; }
+        .rarity-badge.uncommon { background: #22c55e; color: white; }
+        .rarity-badge.rare { background: #3b82f6; color: white; }
+        .rarity-badge.epic { background: #a855f7; color: white; }
+        .rarity-badge.legendary { 
+            background: linear-gradient(135deg, #f59e0b, #ef4444); 
+            color: white;
+            animation: legendaryPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes legendaryPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.8); }
+        }
+
+        .pokemon-zone-sprite {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-hover);
+            border-radius: 8px;
+        }
+
+        .pokemon-zone-sprite img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .pokemon-zone-card:hover .pokemon-zone-sprite img { transform: scale(1.2); }
+
+        .pokemon-zone-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: capitalize;
+        }
+
+        .pokemon-zone-types {
+            display: flex;
+            gap: 0.3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .pokemon-zone-type {
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .pokemon-zone-egg { font-size: 0.75rem; color: var(--text-secondary); }
+        .pokemon-zone-egg strong { color: var(--text-primary); }
+
+        .type-bicho { background: #a8b820; }
+        .type-volador { background: #a890f0; }
+        .type-veneno { background: #a040a0; }
+        .type-hada { background: #ee99ac; color: #333; }
+        .type-normal { background: #a8a878; }
+        .type-psiquico { background: #f85888; }
+        .type-roca { background: #b8a038; }
+        .type-tierra { background: #e0c068; color: #333; }
+        .type-agua { background: #6890f0; }
+        .type-fuego { background: #f08030; }
+        .type-electrico { background: #f8d030; color: #333; }
+        .type-planta { background: #78c850; }
+        .type-hielo { background: #98d8d8; color: #333; }
+        .type-lucha { background: #c03028; }
+        .type-fantasma { background: #705898; }
+        .type-dragon { background: #7038f8; }
+        .type-siniestro { background: #705848; }
+        .type-acero { background: #b8b8d0; color: #333; }
+
+        .loading-container { text-align: center; padding: 4rem 2rem; }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 50px; height: 50px;
+            border: 4px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--safari-green);
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .modal.active { display: flex; animation: fadeIn 0.3s; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 24px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid var(--safari-green);
+            animation: slideUp 0.4s;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 2.5rem;
+            border-radius: 24px 24px 0 0;
+            position: relative;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pokemon-color, var(--safari-green)), var(--water-light));
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: rotate(90deg);
+        }
+
+        .modal-avatar {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .modal-avatar img { width: 100%; height: 100%; object-fit: contain; }
+
+        .modal-name {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            text-transform: capitalize;
+        }
+
+        .modal-id {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .modal-body { padding: 2.5rem; }
+        .modal-section { margin-bottom: 2rem; }
+
+        .modal-section-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--safari-green);
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--safari-green);
+        }
+
+        .info-grid-modal { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
+
+        .info-item { background: var(--bg-dark); padding: 1rem; border-radius: 12px; text-align: center; }
+        .info-label { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .info-value { font-size: 1.3rem; font-weight: bold; color: var(--text-primary); }
+
+        .stat-bar-container { background: var(--bg-dark); padding: 1.5rem; border-radius: 12px; }
+
+        .stat-bar-row {
+            display: grid;
+            grid-template-columns: 120px 50px 1fr;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .stat-bar-name { color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase; }
+        .stat-bar-value { font-weight: bold; color: var(--text-primary); }
+
+        .stat-bar-bg { background: var(--bg-card); height: 12px; border-radius: 6px; overflow: hidden; }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--safari-green), var(--water-light));
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+
+        footer {
+            background: var(--bg-card);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 2px solid var(--border);
+        }
+
+        footer p { color: var(--text-secondary); }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; }
+            nav { justify-content: center; }
+            .hero { padding: 3rem 1rem; }
+            .shiny-content { grid-template-columns: 1fr; }
+            .download-content { grid-template-columns: 1fr; }
+            .pokemon-zone-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.8rem; }
+            .modal-content { max-height: 95vh; }
+            .modal-header { padding: 2rem 1rem; }
+            .modal-body { padding: 1.5rem; }
+            .modal-avatar { width: 140px; height: 140px; }
+            .modal-name { font-size: 1.8rem; }
+            .stat-bar-row { grid-template-columns: 80px 40px 1fr; gap: 0.5rem; }
+            .difficulty-grid { grid-template-columns: 1fr; }
+            .shop-grid { grid-template-columns: 1fr; }
+            .search-filters { grid-template-columns: 1fr; }
+            .pokemon-by-zone-header { flex-direction: column; }
+            .advice-box { max-width: 100%; }
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--safari-green); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #059669; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="wiki.html" class="logo">
+                <div class="logo-icon">🌿</div>
+                <span>WikiNutrias</span>
+            </a>
+            <nav>
+                <a href="wiki.html">Inicio</a>
+                <a href="miembros.html">Miembros</a>
+                <a href="safari.html" class="active">Safari</a>
+                <a href="lideres.html">Líderes de Gimnasio</a>
+                <a href="https://discord.gg/7nhbYcQDc" target="_blank" class="nav-discord">💬 Discord</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">🌿 Zona Safari Oficial</span>
+            <h1>Safari WikiNutrias</h1>
+            <p>Explora las diferentes zonas del Safari, consigue tickets, captura Pokémon shiny y derrota entrenadores con diferentes dificultades</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="hero-stat-value">8</div><div class="hero-stat-label">Zonas</div></div>
+                <div class="hero-stat"><div class="hero-stat-value">150+</div><div class="hero-stat-label">Pokémon</div></div>
+                <div class="hero-stat"><div class="hero-stat-value">3</div><div class="hero-stat-label">Dificultades</div></div>
+                <div class="hero-stat"><div class="hero-stat-value">1/8192</div><div class="hero-stat-label">Shiny Rate</div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Descarga Mapa -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-tag">🗺️ Recurso</span>
+                <h2 class="section-title">Descarga el Mapa</h2>
+                <p class="section-subtitle">Obtén el mapa completo de la Zona Safari</p>
+            </div>
+            <div class="download-map-section">
+                <div class="download-content">
+                    <div class="download-info">
+                        <h2>🗺️ Mapa de la Zona Safari</h2>
+                        <p>Descarga el mapa interactivo de la Zona Safari con todas las ubicaciones de Pokémon, entrenadores, Poképaradas y puntos de interés marcados.</p>
+                        <ul class="download-features">
+                            <li>Todas las zonas marcadas con colores</li>
+                            <li>Ubicación de los 24 entrenadores</li>
+                            <li>129 Poképaradas identificadas</li>
+                            <li>Puntos de spawn de Pokémon</li>
+                            <li>Rutas de taxis para teletransporte</li>
+                            <li>Actualizado a la última versión</li>
+                        </ul>
+                        <a href="archivos/mapa-safari.txt"" class="download-btn" onclick="downloadMap(event)">
+                            📥 Descargar Mapa (txt)
+                        </a>
+                    </div>
+                    <div class="download-steps">
+                        <h3>📋 Cómo instalar el mapa</h3>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Descarga el archivo</h4>
+                                <p>Haz clic en el botón de descarga para obtener el mapa en formato PNG.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Abre tu carpeta del servidor</h4>
+                                <p>Ve a la carpeta de tu servidor y busca la ruta <code>plugins/Safari/maps/</code></p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Copia el archivo</h4>
+                                <p>Pega el archivo descargado en la carpeta <code>maps/</code> con el nombre <code>safari-map.png</code></p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Reinicia el servidor</h4>
+                                <p>Reinicia tu servidor para que el mapa se cargue correctamente. ¡Listo!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tickets -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-tag">🎟️ Accesos</span>
+                <h2 class="section-title">Tickets del Safari</h2>
+                <p class="section-subtitle">Precios y ventajas de los tickets</p>
+            </div>
+            <div class="tickets-grid" id="ticketsGrid"></div>
+        </section>
+
+    
+        <!-- Entrenadores -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-tag">🥊 Desafío</span>
+                <h2 class="section-title">Entrenadores del Safari</h2>
+                <p class="section-subtitle">recompensas al ganar</p>
+            </div>
+            <div class="trainers-section">
+                <div class="trainers-info">
+                    <p>Todos los entrenadores del Safari tienen las mismas tres dificultades. Al hablar con uno eliges contra cuál combatir; si ganas, ese reto tiene <strong>6 horas de espera</strong> antes de poder repetirlo.</p>
+                </div>
+                <div class="difficulty-grid" id="difficultyGrid"></div>
+            </div>
+        </section>
+
+        <!-- Tienda -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-tag">🛒 Compras</span>
+                <h2 class="section-title">Tienda del Safari</h2>
+                <p class="section-subtitle">se paga con <strong>Safari Points (SP)</strong></p>
+            </div>
+            <div class="shop-section">
+                <div class="shop-grid" id="shopGrid"></div>
+            </div>
+        </section>
+
+        <!-- Pokémon por Zona -->
+        <section class="section fade-in">
+            <div class="pokemon-by-zone-section">
+                <div class="pokemon-by-zone-header">
+                    <div class="pokemon-by-zone-title">
+                        <h2>Pokémon por zona</h2>
+                        <p>Lo que aparece en cada zona del Safari, con su familia evolutiva completa. Todo lo que atrapas aquí trae al menos un <strong>IV a 31</strong>: filtra por grupo huevo para buscar breeders para tu <a href="#">cadena de crianza</a>.</p>
+                    </div>
+                    <div class="advice-box">
+                        <div class="advice-icon">🌿</div>
+                        <div class="advice-text">
+                            Consejo: ve con Pokémon de <strong>nivel 1 a 5</strong>, así las Safari Balls capturan mucho mejor.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zone-filters" id="zoneFilters"></div>
+
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label>Grupo Huevo</label>
+                        <select id="eggGroupFilter" onchange="filterPokemon()">
+                            <option value="all">Todos los grupos huevo</option>
+                            <option value="monster">Monstruo</option>
+                            <option value="water1">Agua 1</option>
+                            <option value="water2">Agua 2</option>
+                            <option value="water3">Agua 3</option>
+                            <option value="bug">Bicho</option>
+                            <option value="flying">Volador</option>
+                            <option value="field">Campo</option>
+                            <option value="fairy">Hada</option>
+                            <option value="grass">Planta</option>
+                            <option value="humanlike">Humanoide</option>
+                            <option value="mineral">Mineral</option>
+                            <option value="amorphous">Amorfo</option>
+                            <option value="ditto">Ditto</option>
+                            <option value="dragon">Dragón</option>
+                            <option value="undiscovered">Desconocido</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Rareza</label>
+                        <select id="rarityFilter" onchange="filterPokemon()">
+                            <option value="all">Todas las rarezas</option>
+                            <option value="common">Común</option>
+                            <option value="uncommon">Poco Común</option>
+                            <option value="rare">Raro</option>
+                            <option value="epic">Épico</option>
+                            <option value="legendary">Legendario</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Buscar</label>
+                        <input type="text" id="pokemonSearch" placeholder="Nombre del Pokémon..." oninput="filterPokemon()">
+                    </div>
+                </div>
+
+                <div class="rarity-legend">
+                    <div class="rarity-legend-item"><div class="rarity-legend-dot rarity-common-dot"></div>Común</div>
+                    <div class="rarity-legend-item"><div class="rarity-legend-dot rarity-uncommon-dot"></div>Poco Común</div>
+                    <div class="rarity-legend-item"><div class="rarity-legend-dot rarity-rare-dot"></div>Raro</div>
+                    <div class="rarity-legend-item"><div class="rarity-legend-dot rarity-epic-dot"></div>Épico</div>
+                    <div class="rarity-legend-item"><div class="rarity-legend-dot rarity-legendary-dot"></div>Legendario</div>
+                </div>
+
+                <div class="pokemon-count" id="pokemonCount">
+                    <strong>0</strong> Pokémon
+                </div>
+
+                <div id="pokemonByZoneContainer">
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Cargando Pokémon...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="pokemonModal">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WikiNutrias - Todos los derechos reservados</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Datos Pokémon proporcionados por <a href="https://pokeapi.co/" style="color: var(--safari-green);">PokéAPI</a></p>
+    </footer>
+
+    <script>
+        const tickets = [
+            { name: 'Pase Básico', icon: '🎫', price: '4000 Pokedolares', color: '#64748b', colorLight: '#94a3b8', features: ['Acceso a 3 zonas básicas', '5 horas de juego', '10 Safari Balls', 'Sin acceso a Shiny'], popular: false },
+            { name: 'Pase Premium', icon: '🎪', price: '100 DiosesCoins', color: '#f59e0b', colorLight: '#fcd34d', features: ['Acceso a todas las zonas', '24 horas de juego', '50 Safari Balls', 'Shiny Rate x4', '3 Amuleto Iris', 'Acceso a Ruinas'], popular: true }
+        ];
+
+        const shinyPokemon = [6, 149, 150, 151, 249, 384];
+
+        const difficulties = [
+            { name: 'Fácil', icon: '🟢', level: 30, color: '#22c55e', colorLight: '#4ade80', sp: 20, money: 200, items: ['10 Safari Balls', '5 bolas pegajosas', '7 bolas de fango', '1 bomba de humo'] },
+            { name: 'Medio', icon: '🟡', level: 60, color: '#eab308', colorLight: '#facc15', sp: 25, money: 350, items: ['10 Safari Balls', '5 bolas pegajosas', '7 bolas de fango', '1 bomba de humo'] },
+            { name: 'Difícil', icon: '🔴', level: 100, color: '#ef4444', colorLight: '#fca5a5', sp: 30, money: 500, items: ['10 Safari Balls', '5 bolas pegajosas', '7 bolas de fango', '1 bomba de humo'] }
+        ];
+
+        const shopItems = [
+            { name: 'Safari Ball', icon: '🎯', description: 'Ratio de captura ×1,5 fuera de combate.', price: 3, special: false },
+            { name: 'Jet Ball', icon: '🔵', description: 'Ratio de captura ×2 y vuela más lejos.', price: 6, special: false },
+            { name: 'Bola de fango', icon: '🟤', description: 'Lánzala a un Pokémon: puede dejarlo aturdido.', price: 4, special: false },
+            { name: 'Bola pegajosa', icon: '⚪', description: 'Lánzala a un Pokémon: siempre lo deja aturdido.', price: 10, special: false },
+            { name: 'Llave Safari', icon: '🗝️', description: 'Abre el <strong>Tesoro Safari</strong> (skins de Pokémon).', price: null, special: true, packs: [{ qty: 1, price: 1000, discount: null }, { qty: 3, price: 2700, discount: '-10%' }, { qty: 5, price: 4200, discount: '-16%' }] },
+            { name: 'Bomba de humo', icon: '💨', description: 'Lánzala al suelo: los Pokémon cercanos tardan más en detectarte.', price: 15, special: false }
+        ];
+
+        // Zonas con Pokémon y sus rarezas
+        const safariZones = [
+            { id: 'todas', name: 'Todas', pokemonIds: [] },
+            { 
+                id: 'jardin', 
+                name: 'Jardín Mágico', 
+                pokemonIds: [
+                    { id: 35, rarity: 'uncommon' }, { id: 36, rarity: 'rare' },
+                    { id: 39, rarity: 'uncommon' }, { id: 40, rarity: 'rare' },
+                    { id: 63, rarity: 'rare' }, { id: 64, rarity: 'epic' },
+                    { id: 65, rarity: 'legendary' }, { id: 173, rarity: 'uncommon' },
+                    { id: 174, rarity: 'rare' }, { id: 175, rarity: 'epic' }
+                ]
+            },
+            { 
+                id: 'rio', 
+                name: 'Río y Océano', 
+                pokemonIds: [
+                    { id: 54, rarity: 'common' }, { id: 55, rarity: 'uncommon' },
+                    { id: 60, rarity: 'common' }, { id: 61, rarity: 'uncommon' },
+                    { id: 62, rarity: 'rare' }, { id: 72, rarity: 'common' },
+                    { id: 73, rarity: 'uncommon' }, { id: 79, rarity: 'common' },
+                    { id: 80, rarity: 'uncommon' }, { id: 86, rarity: 'uncommon' },
+                    { id: 87, rarity: 'rare' }, { id: 90, rarity: 'common' },
+                    { id: 91, rarity: 'rare' }, { id: 98, rarity: 'common' },
+                    { id: 99, rarity: 'uncommon' }, { id: 116, rarity: 'uncommon' },
+                    { id: 117, rarity: 'rare' }, { id: 118, rarity: 'common' },
+                    { id: 119, rarity: 'uncommon' }, { id: 120, rarity: 'uncommon' },
+                    { id: 121, rarity: 'rare' }
+                ]
+            },
+            { 
+                id: 'valle', 
+                name: 'Valle Sombrío', 
+                pokemonIds: [
+                    { id: 41, rarity: 'common' }, { id: 42, rarity: 'uncommon' },
+                    { id: 92, rarity: 'common' }, { id: 93, rarity: 'uncommon' },
+                    { id: 94, rarity: 'rare' }, { id: 198, rarity: 'uncommon' },
+                    { id: 200, rarity: 'rare' }, { id: 215, rarity: 'rare' },
+                    { id: 228, rarity: 'uncommon' }, { id: 229, rarity: 'rare' },
+                    { id: 261, rarity: 'common' }, { id: 262, rarity: 'uncommon' },
+                    { id: 302, rarity: 'rare' }, { id: 353, rarity: 'uncommon' },
+                    { id: 354, rarity: 'rare' }, { id: 355, rarity: 'uncommon' },
+                    { id: 356, rarity: 'rare' }
+                ]
+            },
+            { 
+                id: 'cumbres', 
+                name: 'Cumbres Salvajes', 
+                pokemonIds: [
+                    { id: 27, rarity: 'common' }, { id: 28, rarity: 'uncommon' },
+                    { id: 66, rarity: 'common' }, { id: 67, rarity: 'uncommon' },
+                    { id: 68, rarity: 'rare' }, { id: 74, rarity: 'common' },
+                    { id: 75, rarity: 'uncommon' }, { id: 76, rarity: 'rare' },
+                    { id: 95, rarity: 'rare' }, { id: 104, rarity: 'common' },
+                    { id: 105, rarity: 'uncommon' }, { id: 111, rarity: 'uncommon' },
+                    { id: 112, rarity: 'rare' }, { id: 142, rarity: 'epic' },
+                    { id: 207, rarity: 'rare' }, { id: 246, rarity: 'epic' },
+                    { id: 247, rarity: 'legendary' }, { id: 248, rarity: 'legendary' }
+                ]
+            },
+            { 
+                id: 'campos', 
+                name: 'Campos Árticos', 
+                pokemonIds: [
+                    { id: 87, rarity: 'uncommon' }, { id: 91, rarity: 'rare' },
+                    { id: 124, rarity: 'rare' }, { id: 131, rarity: 'epic' },
+                    { id: 144, rarity: 'legendary' }, { id: 215, rarity: 'rare' },
+                    { id: 220, rarity: 'uncommon' }, { id: 221, rarity: 'rare' },
+                    { id: 225, rarity: 'uncommon' }, { id: 238, rarity: 'rare' },
+                    { id: 361, rarity: 'uncommon' }, { id: 362, rarity: 'rare' }
+                ]
+            },
+            { 
+                id: 'selva', 
+                name: 'Selva Ancestral', 
+                pokemonIds: [
+                    { id: 1, rarity: 'common' }, { id: 2, rarity: 'uncommon' },
+                    { id: 3, rarity: 'rare' }, { id: 4, rarity: 'common' },
+                    { id: 5, rarity: 'uncommon' }, { id: 6, rarity: 'rare' },
+                    { id: 7, rarity: 'common' }, { id: 8, rarity: 'uncommon' },
+                    { id: 9, rarity: 'rare' }, { id: 10, rarity: 'common' },
+                    { id: 11, rarity: 'uncommon' }, { id: 12, rarity: 'rare' },
+                    { id: 13, rarity: 'common' }, { id: 14, rarity: 'uncommon' },
+                    { id: 15, rarity: 'rare' }, { id: 16, rarity: 'common' },
+                    { id: 17, rarity: 'uncommon' }, { id: 18, rarity: 'rare' },
+                    { id: 19, rarity: 'common' }, { id: 20, rarity: 'uncommon' },
+                    { id: 21, rarity: 'common' }, { id: 22, rarity: 'uncommon' },
+                    { id: 23, rarity: 'common' }, { id: 24, rarity: 'uncommon' },
+                    { id: 25, rarity: 'rare' }, { id: 26, rarity: 'epic' },
+                    { id: 29, rarity: 'common' }, { id: 30, rarity: 'uncommon' },
+                    { id: 31, rarity: 'rare' }, { id: 32, rarity: 'common' },
+                    { id: 33, rarity: 'uncommon' }, { id: 34, rarity: 'rare' },
+                    { id: 37, rarity: 'uncommon' }, { id: 38, rarity: 'rare' },
+                    { id: 43, rarity: 'common' }, { id: 44, rarity: 'uncommon' },
+                    { id: 45, rarity: 'rare' }, { id: 46, rarity: 'common' },
+                    { id: 47, rarity: 'uncommon' }, { id: 48, rarity: 'common' },
+                    { id: 49, rarity: 'uncommon' }, { id: 52, rarity: 'common' },
+                    { id: 53, rarity: 'uncommon' }, { id: 56, rarity: 'uncommon' },
+                    { id: 57, rarity: 'rare' }, { id: 58, rarity: 'uncommon' },
+                    { id: 59, rarity: 'rare' }, { id: 69, rarity: 'common' },
+                    { id: 70, rarity: 'uncommon' }, { id: 71, rarity: 'rare' }
+                ]
+            },
+            { 
+                id: 'tierras', 
+                name: 'Tierras Ígneas', 
+                pokemonIds: [
+                    { id: 37, rarity: 'uncommon' }, { id: 38, rarity: 'rare' },
+                    { id: 58, rarity: 'uncommon' }, { id: 59, rarity: 'rare' },
+                    { id: 77, rarity: 'common' }, { id: 78, rarity: 'uncommon' },
+                    { id: 88, rarity: 'common' }, { id: 89, rarity: 'uncommon' },
+                    { id: 126, rarity: 'rare' }, { id: 136, rarity: 'rare' },
+                    { id: 155, rarity: 'common' }, { id: 156, rarity: 'uncommon' },
+                    { id: 157, rarity: 'rare' }, { id: 218, rarity: 'common' },
+                    { id: 219, rarity: 'uncommon' }, { id: 228, rarity: 'uncommon' },
+                    { id: 229, rarity: 'rare' }, { id: 240, rarity: 'rare' },
+                    { id: 244, rarity: 'legendary' }
+                ]
+            }
+        ];
+
+        const typeColors = {
+            normal: '#A8A878', fire: '#F08030', water: '#6890F0', electric: '#F8D030', grass: '#78C850',
+            ice: '#98D8D8', fighting: '#C03028', poison: '#A040A0', ground: '#E0C068', flying: '#A890F0',
+            psychic: '#F85888', bug: '#A8B820', rock: '#B8A038', ghost: '#705898', dragon: '#7038F8',
+            dark: '#705848', steel: '#B8B8D0', fairy: '#EE99AC'
+        };
+
+        const typeNamesES = {
+            normal: 'Normal', fire: 'Fuego', water: 'Agua', electric: 'Eléctrico', grass: 'Planta',
+            ice: 'Hielo', fighting: 'Lucha', poison: 'Veneno', ground: 'Tierra', flying: 'Volador',
+            psychic: 'Psíquico', bug: 'Bicho', rock: 'Roca', ghost: 'Fantasma', dragon: 'Dragón',
+            dark: 'Siniestro', steel: 'Acero', fairy: 'Hada'
+        };
+
+        const statNamesES = {
+            'hp': 'PS', 'attack': 'Ataque', 'defense': 'Defensa',
+            'special-attack': 'At. Esp.', 'special-defense': 'Def. Esp.', 'speed': 'Velocidad'
+        };
+
+        const eggGroupNamesES = {
+            'monster': 'Monstruo', 'water1': 'Agua 1', 'bug': 'Bicho', 'flying': 'Volador',
+            'field': 'Campo', 'fairy': 'Hada', 'grass': 'Planta', 'humanlike': 'Humanoide',
+            'water3': 'Agua 3', 'mineral': 'Mineral', 'amorphous': 'Amorfo', 'water2': 'Agua 2',
+            'ditto': 'Ditto', 'dragon': 'Dragón', 'undiscovered': 'Desconocido'
+        };
+
+        const rarityNamesES = {
+            'common': 'Común',
+            'uncommon': 'Poco Común',
+            'rare': 'Raro',
+            'epic': 'Épico',
+            'legendary': 'Legendario'
+        };
+
+        const API_BASE = 'https://pokeapi.co/api/v2';
+        const pokemonCache = {};
+        const speciesCache = {};
+        let allPokemonData = {};
+        let currentZoneFilter = 'todas';
+
+        async function getPokemon(id) {
+            if (pokemonCache[id]) return pokemonCache[id];
+            try {
+                const response = await fetch(`${API_BASE}/pokemon/${id}`);
+                if (!response.ok) throw new Error('No encontrado');
+                const data = await response.json();
+                pokemonCache[id] = data;
+                return data;
+            } catch (error) {
+                console.error(`Error cargando Pokémon ${id}:`, error);
+                return null;
+            }
+        }
+
+        async function getSpecies(id) {
+            if (speciesCache[id]) return speciesCache[id];
+            try {
+                const response = await fetch(`${API_BASE}/pokemon-species/${id}`);
+                if (!response.ok) throw new Error('No encontrado');
+                const data = await response.json();
+                speciesCache[id] = data;
+                return data;
+            } catch (error) {
+                console.error(`Error cargando species ${id}:`, error);
+                return null;
+            }
+        }
+
+        async function getPokemonDescription(id) {
+            try {
+                const response = await fetch(`${API_BASE}/pokemon-species/${id}`);
+                const data = await response.json();
+                const spanish = data.flavor_text_entries.find(e => e.language.name === 'es');
+                return spanish ? spanish.flavor_text.replace(/\f/g, ' ') : 'Sin descripción disponible';
+            } catch (error) {
+                return 'Error al cargar descripción';
+            }
+        }
+
+        function renderTickets() {
+            const grid = document.getElementById('ticketsGrid');
+            grid.innerHTML = tickets.map(ticket => `
+                <div class="ticket-card" style="--ticket-color: ${ticket.color}; --ticket-color-light: ${ticket.colorLight};">
+                    ${ticket.popular ? '<div class="ticket-popular">⭐ Popular</div>' : ''}
+                    <div class="ticket-icon">${ticket.icon}</div>
+                    <h3 class="ticket-name">${ticket.name}</h3>
+                    <div class="ticket-price">💵 ${ticket.price}</div>
+                    <ul class="ticket-features">${ticket.features.map(f => `<li>${f}</li>`).join('')}</ul>
+    
+                </div>
+            `).join('');
+        }
+
+
+
+        async function renderShiny() {
+            const showcase = document.getElementById('shinyShowcase');
+            const pokemon = await Promise.all(shinyPokemon.map(id => getPokemon(id)));
+            const valid = pokemon.filter(p => p !== null);
+            
+            showcase.innerHTML = valid.map(p => {
+                const sprite = p.sprites.other['official-artwork'].front_default || p.sprites.front_default;
+                return `<div class="shiny-pokemon" onclick="showPokemonDetails(${p.id})"><img src="${sprite}" alt="${p.name}"><div class="shiny-pokemon-name">${p.name}</div></div>`;
+            }).join('');
+        }
+
+        function renderDifficulties() {
+            const grid = document.getElementById('difficultyGrid');
+            grid.innerHTML = difficulties.map(diff => `
+                <div class="difficulty-card" style="--diff-color: ${diff.color}; --diff-color-light: ${diff.colorLight};">
+                    <div class="difficulty-header">
+                        <div class="difficulty-icon">${diff.icon}</div>
+                        <div><div class="difficulty-title">${diff.name}</div><div class="difficulty-level">Rival de nivel ${diff.level}</div></div>
+                    </div>
+                    <div class="difficulty-rewards">
+                        <span class="reward-badge reward-sp">⚡ ${diff.sp} SP</span>
+                        <span class="reward-badge reward-money">💵 ${diff.money} $</span>
+                    </div>
+                    <ul class="difficulty-items">${diff.items.map(item => `<li>${item}</li>`).join('')}</ul>
+                </div>
+            `).join('');
+        }
+
+        function renderShop() {
+            const grid = document.getElementById('shopGrid');
+            grid.innerHTML = shopItems.map(item => {
+                if (item.special) {
+                    return `
+                        <div class="shop-item llave-safari">
+                            <div class="shop-item-header"><div class="shop-item-icon">${item.icon}</div><div><div class="shop-item-title">${item.name}</div></div></div>
+                            <div class="shop-item-description">${item.description}</div>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.8rem;">Más baratas en pack:</p>
+                            <div class="pack-prices">${item.packs.map(pack => `
+                                <div class="pack-price" onclick="buyPack('${item.name}', ${pack.qty})">
+                                    <span class="pack-qty">×${pack.qty}</span>
+                                    <span><span class="pack-cost">${pack.price.toLocaleString()} SP</span>${pack.discount ? `<span class="pack-discount">${pack.discount}</span>` : ''}</span>
+                                </div>
+                            `).join('')}</div>
+                        </div>
+                    `;
+                }
+                return `<div class="shop-item"><div class="shop-item-header"><div class="shop-item-icon">${item.icon}</div><div><div class="shop-item-title">${item.name}</div></div></div><div class="shop-item-description">${item.description}</div><div class="shop-item-price">${item.price} SP</div></div>`;
+            }).join('');
+        }
+
+        function buyPack(name, qty) { alert(`🗝️ ¡Has comprado ×${qty} ${name}!`); }
+
+        function renderZoneFilters() {
+            const filters = document.getElementById('zoneFilters');
+            filters.innerHTML = safariZones.map(zone => `
+                <button class="zone-filter-btn ${zone.id === currentZoneFilter ? 'active' : ''}" onclick="selectZoneFilter('${zone.id}')">${zone.name}</button>
+            `).join('');
+        }
+
+        async function selectZoneFilter(zoneId) {
+            currentZoneFilter = zoneId;
+            renderZoneFilters();
+            await renderPokemonByZone();
+        }
+
+        async function loadAllPokemonData() {
+            const allIds = new Set();
+            safariZones.forEach(zone => {
+                if (zone.id !== 'todas') {
+                    zone.pokemonIds.forEach(p => allIds.add(p.id || p));
+                }
+            });
+
+            const container = document.getElementById('pokemonByZoneContainer');
+            container.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><p>Cargando datos de Pokémon... (esto puede tardar unos segundos)</p></div>';
+
+            const idsArray = Array.from(allIds);
+            const batchSize = 10;
+            
+            for (let i = 0; i < idsArray.length; i += batchSize) {
+                const batch = idsArray.slice(i, i + batchSize);
+                const promises = batch.map(async id => {
+                    const pokemon = await getPokemon(id);
+                    const species = await getSpecies(id);
+                    
+                    if (pokemon && species) {
+                        const eggGroups = species.egg_groups.map(eg => eg.name);
+                        const sprite = pokemon.sprites.front_default || pokemon.sprites.other['official-artwork'].front_default;
+                        
+                        allPokemonData[id] = {
+                            id: pokemon.id,
+                            name: pokemon.name,
+                            types: pokemon.types.map(t => t.type.name),
+                            eggGroups: eggGroups,
+                            sprite: sprite,
+                            officialSprite: pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default
+                        };
+                    }
+                });
+                
+                await Promise.all(promises);
+                
+                const progress = Math.min(((i + batchSize) / idsArray.length) * 100, 100);
+                container.innerHTML = `<div class="loading-container"><div class="loading-spinner"></div><p>Cargando... ${Math.round(progress)}%</p></div>`;
+            }
+        }
+
+        async function renderPokemonByZone() {
+            const container = document.getElementById('pokemonByZoneContainer');
+            const eggFilter = document.getElementById('eggGroupFilter').value;
+            const rarityFilter = document.getElementById('rarityFilter').value;
+            const searchFilter = document.getElementById('pokemonSearch').value.toLowerCase();
+
+            if (Object.keys(allPokemonData).length === 0) {
+                await loadAllPokemonData();
+            }
+
+            const zonesToShow = currentZoneFilter === 'todas' 
+                ? safariZones.filter(z => z.id !== 'todas')
+                : safariZones.filter(z => z.id === currentZoneFilter);
+
+            let totalPokemon = 0;
+            let html = '';
+
+            for (const zone of zonesToShow) {
+                const zonePokemon = zone.pokemonIds
+                    .map(p => {
+                        const pokemonId = p.id || p;
+                        const rarity = p.rarity || 'common';
+                        return { ...allPokemonData[pokemonId], rarity: rarity };
+                    })
+                    .filter(p => p !== undefined && p.id !== undefined)
+                    .filter(p => {
+                        if (eggFilter !== 'all' && !p.eggGroups.includes(eggFilter)) return false;
+                        if (rarityFilter !== 'all' && p.rarity !== rarityFilter) return false;
+                        if (searchFilter && !p.name.toLowerCase().includes(searchFilter)) return false;
+                        return true;
+                    });
+
+                if (zonePokemon.length === 0) continue;
+
+                totalPokemon += zonePokemon.length;
+
+                html += `
+                    <div class="zone-container">
+                        <div class="zone-container-header">
+                            <div class="zone-container-title">${zone.name}</div>
+                            <div class="zone-container-count">${zonePokemon.length}</div>
+                        </div>
+                        <div class="pokemon-zone-grid">
+                            ${zonePokemon.map(p => `
+                                <div class="pokemon-zone-card rarity-${p.rarity}" onclick="showPokemonDetails(${p.id})">
+                                    <span class="rarity-badge ${p.rarity}">${rarityNamesES[p.rarity]}</span>
+                                    <div class="pokemon-zone-sprite">
+                                        <img src="${p.sprite}" alt="${p.name}" onerror="this.src='${p.officialSprite}'">
+                                    </div>
+                                    <div class="pokemon-zone-name">${p.name}</div>
+                                    <div class="pokemon-zone-types">
+                                        ${p.types.map(t => `<span class="pokemon-zone-type type-${t}">${typeNamesES[t] || t}</span>`).join('')}
+                                    </div>
+                                    <div class="pokemon-zone-egg">
+                                        ${p.eggGroups.map(eg => eggGroupNamesES[eg] || eg).join(', ')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (html === '') {
+                container.innerHTML = '<div class="loading-container"><p>No se encontraron Pokémon con esos filtros</p></div>';
+            } else {
+                container.innerHTML = html;
+            }
+
+            document.getElementById('pokemonCount').innerHTML = `<strong>${totalPokemon}</strong> Pokémon`;
+        }
+
+        function filterPokemon() { renderPokemonByZone(); }
+
+        async function showPokemonDetails(id) {
+            const pokemon = await getPokemon(id);
+            if (!pokemon) return;
+
+            const modal = document.getElementById('pokemonModal');
+            const content = document.getElementById('modalContent');
+
+            const sprite = pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default;
+            const mainType = pokemon.types[0].type.name;
+            const typeColor = typeColors[mainType];
+
+            const species = await getSpecies(id);
+            const eggGroups = species ? species.egg_groups.map(eg => eggGroupNamesES[eg.name] || eg.name).join(', ') : 'Desconocido';
+
+            content.innerHTML = `
+                <div class="modal-header" style="--pokemon-color: ${typeColor};">
+                    <button class="close-modal" onclick="closeModal()">×</button>
+                    <div class="modal-avatar"><img src="${sprite}" alt="${pokemon.name}"></div>
+                    <h2 class="modal-name">${pokemon.name}</h2>
+                    <span class="modal-id">#${String(pokemon.id).padStart(3, '0')}</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">📖 Descripción</h3>
+                        <p class="modal-description" id="pokemonDescription"><div class="loading-spinner" style="width: 30px; height: 30px;"></div><p style="margin-top: 0.5rem;">Cargando...</p></p>
+                    </div>
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">ℹ️ Información</h3>
+                        <div class="info-grid-modal">
+                            <div class="info-item"><div class="info-label">Altura</div><div class="info-value">${(pokemon.height / 10).toFixed(1)} m</div></div>
+                            <div class="info-item"><div class="info-label">Peso</div><div class="info-value">${(pokemon.weight / 10).toFixed(1)} kg</div></div>
+                            <div class="info-item"><div class="info-label">Grupo Huevo</div><div class="info-value" style="font-size: 1rem;">${eggGroups}</div></div>
+                            <div class="info-item"><div class="info-label">Tipos</div><div style="display: flex; gap: 0.3rem; flex-wrap: wrap; justify-content: center; margin-top: 0.3rem;">${pokemon.types.map(t => `<span class="pokemon-type-badge" style="background: ${typeColors[t.type.name]}">${typeNamesES[t.type.name]}</span>`).join('')}</div></div>
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">📊 Estadísticas Base</h3>
+                        <div class="stat-bar-container">
+                            ${pokemon.stats.map(s => `<div class="stat-bar-row"><div class="stat-bar-name">${statNamesES[s.stat.name]}</div><div class="stat-bar-value">${s.base_stat}</div><div class="stat-bar-bg"><div class="stat-bar-fill" style="width: ${Math.min((s.base_stat / 255) * 100, 100)}%"></div></div></div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            const description = await getPokemonDescription(id);
+            document.getElementById('pokemonDescription').innerHTML = description;
+        }
+
+        function closeModal() { document.getElementById('pokemonModal').classList.remove('active'); }
+
+        document.getElementById('pokemonModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        renderTickets();
+        renderShiny();
+        renderDifficulties();
+        renderShop();
+        renderZoneFilters();
+        renderPokemonByZone();
+    </script>
+</body>
+</html>

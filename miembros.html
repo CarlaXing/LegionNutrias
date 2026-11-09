@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiNutrias - Miembros</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --discord: #5865F2;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --water-light: #06b6d4;
+            --blissys-gold: #fbbf24;
+            --blissys-glow: #fcd34d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .logo:hover { transform: scale(1.05); }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            animation: logoFloat 3s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .logo-header-img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        nav { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background: var(--bg-hover);
+            color: var(--primary);
+        }
+
+        .nav-discord {
+            background: var(--discord) !important;
+            color: white !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 25px !important;
+        }
+
+        .nav-discord:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.5);
+        }
+
+        .hero {
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--water-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section { margin-bottom: 4rem; }
+
+        .section-header { text-align: center; margin-bottom: 3rem; }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Líderes */
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .leader-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(236, 72, 153, 0.1));
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(239, 68, 68, 0.6);
+            box-shadow: 0 20px 50px rgba(239, 68, 68, 0.3);
+        }
+
+        .leader-avatar {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ef4444, #ec4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3), 0 10px 30px rgba(239, 68, 68, 0.4);
+            animation: leaderGlow 3s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        @keyframes leaderGlow {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3), 0 10px 30px rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.5), 0 10px 40px rgba(239, 68, 68, 0.6); }
+        }
+
+        .leader-crown {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            filter: drop-shadow(0 4px 8px rgba(234, 179, 8, 0.6));
+            animation: crownBounce 2s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes crownBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); }
+            50% { transform: translateX(-50%) translateY(-5px) rotate(5deg); }
+        }
+
+        .leader-name { font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem; }
+
+        .leader-role {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .leader-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Co-Líderes */
+        .coleaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .coleader-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .coleader-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.6);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .coleader-avatar {
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--water-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 0 auto 1.2rem;
+            position: relative;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3), 0 8px 20px rgba(99, 102, 241, 0.3);
+            overflow: hidden;
+        }
+
+        .coleader-star {
+            position: absolute;
+            top: -10px; right: -5px;
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+
+        .coleader-name { font-size: 1.2rem; font-weight: bold; margin-bottom: 0.4rem; }
+
+        .coleader-role {
+            display: inline-block;
+            padding: 0.25rem 0.9rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Gimnasio */
+        .gym-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            border: 1px solid var(--border);
+            margin: 4rem 0;
+        }
+
+        .gym-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gym-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .gym-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .gym-avatar-wrapper {
+            position: relative;
+            width: 100px; height: 100px;
+            margin: 0 auto 1rem;
+        }
+
+        .gym-ring {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            padding: 4px;
+            background: conic-gradient(var(--gym-color), var(--gym-color-light), var(--gym-color));
+            animation: ringRotate 4s linear infinite;
+        }
+
+        @keyframes ringRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .gym-ring::before {
+            content: '';
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border-radius: 50%;
+            background: var(--bg-card);
+        }
+
+        .gym-card:hover .gym-ring {
+            animation: ringRotate 1.5s linear infinite;
+            box-shadow: 0 0 30px var(--gym-color);
+        }
+
+        .gym-avatar {
+            position: relative;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gym-color), var(--gym-color-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            z-index: 1;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .gym-type-badge {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.25rem 0.8rem;
+            background: var(--gym-color);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        .gym-name { font-size: 1.05rem; font-weight: bold; margin-top: 1rem; margin-bottom: 0.3rem; }
+        .gym-title { font-size: 0.8rem; color: var(--text-secondary); font-style: italic; }
+
+        /* Miembros */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .member-card {
+            background: var(--bg-card);
+            padding: 1.2rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .member-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+        }
+
+        /* ============ MIEMBROS CON EQUIPO BLISSYS ============ */
+        .member-card.blissys-team {
+            border: 2px solid var(--blissys-gold);
+            background: linear-gradient(135deg, var(--bg-card), rgba(251, 191, 36, 0.05));
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+        }
+
+        .member-card.blissys-team:hover {
+            border-color: var(--blissys-glow);
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .member-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Contorno dorado para miembros con equipo Blissys */
+        .member-card.blissys-team .member-avatar {
+            box-shadow: 0 0 0 3px var(--blissys-gold), 0 0 15px rgba(251, 191, 36, 0.5);
+            animation: blissysGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes blissysGlow {
+            0%, 100% { 
+                box-shadow: 0 0 0 3px var(--blissys-gold), 0 0 15px rgba(251, 191, 36, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 0 5px var(--blissys-glow), 0 0 25px rgba(251, 191, 36, 0.7);
+            }
+        }
+
+        /* Badge de Blissys */
+        .blissys-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--blissys-gold), var(--blissys-glow));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.6);
+            z-index: 10;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .member-info { flex: 1; min-width: 0; }
+        .member-name { font-weight: bold; margin-bottom: 0.2rem; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .member-role { font-size: 0.75rem; color: var(--text-secondary); }
+
+        .member-card.blissys-team .member-role {
+            color: var(--blissys-gold);
+            font-weight: 600;
+        }
+
+        .online-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        .offline-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #64748b;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* Tooltip para Blissys */
+        .blissys-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-dark);
+            border: 2px solid var(--blissys-gold);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(251, 191, 36, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .blissys-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--blissys-gold);
+        }
+
+        .member-card.blissys-team:hover .blissys-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .blissys-tooltip strong {
+            color: var(--blissys-gold);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ============ AVATAR IMAGEN ============ */
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover .avatar-img,
+        .leader-card:hover .avatar-img,
+        .coleader-card:hover .avatar-img {
+            transform: scale(1.1);
+        }
+
+        .leader-avatar::after,
+        .coleader-avatar::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid var(--primary);
+            animation: slideUp 0.4s;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 2.5rem;
+            border-radius: 24px 24px 0 0;
+            position: relative;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gym-color), var(--gym-color-light));
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: rotate(90deg);
+        }
+
+        .modal-avatar {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 1.5rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .modal-avatar img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-name {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-type {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .modal-body { padding: 2.5rem; }
+
+        .modal-section { margin-bottom: 2.5rem; }
+
+        .modal-section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--gym-color);
+        }
+
+        .team-note {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .team-note-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .team-note-text {
+            flex: 1;
+        }
+
+        .team-note-text strong {
+            color: var(--primary);
+            font-style: normal;
+        }
+
+        .pokemon-team {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pokemon-card {
+            background: var(--bg-dark);
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .pokemon-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .pokemon-image {
+            width: 100%; height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.8rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .pokemon-image img {
+            width: 100px; height: 100px;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .pokemon-card:hover .pokemon-image img { transform: scale(1.1); }
+
+        .pokemon-name {
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-transform: capitalize;
+            margin-bottom: 0.3rem;
+        }
+
+        .pokemon-id { font-size: 0.75rem; color: var(--text-secondary); }
+
+        .pokemon-types {
+            display: flex;
+            gap: 0.3rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pokemon-type-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: white;
+            text-transform: capitalize;
+        }
+
+        .empty-team {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            background: var(--bg-dark);
+            border-radius: 12px;
+            border: 2px dashed var(--border);
+            grid-column: 1 / -1;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px; height: 40px;
+            border: 4px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .stat-bar-container {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .stat-bar-row {
+            display: grid;
+            grid-template-columns: 120px 50px 1fr;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .stat-bar-name {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .stat-bar-value { font-weight: bold; color: var(--text-primary); }
+
+        .stat-bar-bg {
+            background: var(--bg-card);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gym-color, var(--primary)), var(--gym-color-light, var(--accent)));
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            background: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        footer {
+            background: var(--bg-card);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 2px solid var(--border);
+        }
+
+        footer p { color: var(--text-secondary); }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; }
+            nav { justify-content: center; }
+            .hero { padding: 2rem 1rem; }
+            .gym-section { padding: 2rem 1rem; }
+            .gym-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+            .modal-content { max-height: 95vh; }
+            .modal-header { padding: 2rem 1rem; }
+            .modal-body { padding: 1.5rem; }
+            .modal-avatar { width: 120px; height: 120px; font-size: 3rem; }
+            .modal-name { font-size: 1.8rem; }
+            .pokemon-team { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; }
+            .stat-bar-row { grid-template-columns: 80px 40px 1fr; gap: 0.5rem; }
+            .team-note { flex-direction: column; text-align: center; }
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="wiki.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://api.dicebear.com/7.0/adventurer/svg?seed=WikiNutrias&backgroundColor=b6e3f4" alt="Legion Nutrias" class="logo-header-img">
+                </div>
+                <span>WikiNutrias</span>
+            </a>
+            <nav>
+                <a href="wiki.html">Inicio</a>
+                <a href="miembros.html" class="active">Miembros</a>
+                <a href="safari.html" class="active">Safari</a>
+                <a href="lideres.html">Líderes de Gimnasio</a>
+                <a href="https://discord.gg/7nhbYcQDc" target="_blank" class="nav-discord">💬 Discord</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">👥 Nuestro Equipo</span>
+            <h1>Miembros de WikiNutrias</h1>
+            <p>Conoce a las personas que hacen posible esta increíble comunidad. Haz clic en los líderes de gimnasio para ver su equipo Pokémon.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Líderes -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-tag">👑 Máxima autoridad</span>
+                <h2 class="section-title">Líderes</h2>
+                <p class="section-subtitle">Los fundadores y líderes principales que guían nuestra comunidad</p>
+            </div>
+            <div class="leaders-grid" id="leadersGrid"></div>
+        </section>
+
+        <!-- Co-Líderes -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-tag">⭐ Mano derecha</span>
+                <h2 class="section-title">Co-Líderes</h2>
+                <p class="section-subtitle">El equipo de confianza que apoya a los líderes en la gestión diaria</p>
+            </div>
+            <div class="coleaders-grid" id="coleadersGrid"></div>
+        </section>
+
+        <!-- Líderes de Gimnasio -->
+        <section class="gym-section fade-in">
+            <div class="section-header">
+                <span class="section-tag">🏟️ Maestros Pokémon</span>
+                <h2 class="section-title">Líderes de Gimnasio</h2>
+                <p class="section-subtitle">Haz clic en cada líder para ver su equipo Pokémon desde la PokéAPI</p>
+            </div>
+            <div class="gym-grid" id="gymGrid"></div>
+        </section>
+
+        <!-- Miembros -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-tag">💙 Nuestra familia</span>
+                <h2 class="section-title">Miembros</h2>
+                <p class="section-subtitle">Todos los miembros que hacen especial a esta comunidad</p>
+            </div>
+            <div class="members-grid" id="membersGrid"></div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="gymModal">
+        <div class="modal-content" id="gymModalContent"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WikiNutrias - Todos los derechos reservados</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Datos Pokémon proporcionados por <a href="https://pokeapi.co/" style="color: var(--primary);">PokéAPI</a></p>
+    </footer>
+
+    <script>
+        const leaders = [
+            { 
+                name: 'Gary', 
+                emoji: '👑',
+                avatar: 'imagenes/cabeza/GaryTheMachapa.png',
+                description: 'Fundador'
+            },
+            { 
+                name: 'Romina', 
+                emoji: '👑',
+                avatar: 'imagenes/cabeza/RomiHead.png',
+                description: 'Fundador'
+            }
+        ];
+
+        const coLeaders = [
+            { name: 'Adrian / Rian', emoji: '⭐', avatar: 'imagenes/cabeza/AdrianHead.png' },
+            { name: 'Kenneth', emoji: '⭐', avatar: 'imagenes/cabeza/KennethHead.png'},
+            { name: 'Lau', emoji: '⭐', avatar: 'imagenes/cabeza/LauHead.png' },
+            { name: 'Buganvilia / Bunguri', emoji: '⭐', avatar: 'imagenes/cabeza/BuganviliaHead.png'}
+        ];
+
+        const gymLeaders = [
+            { 
+                id: 1, name: 'Toxina', type: 'Fuego', 
+                color: '#F08030', colorLight: '#FF6B35', emoji: '🔥',
+                avatar: 'imagenes/cabeza/ToxinaHead.png',
+                description: 'Maestro del fuego y las llamas ardientes. Su pasión es tan intensa como el fuego que controla. Ha entrenado durante años para dominar los Pokémon de tipo fuego.',
+                team: ['charizard-mega-X', 'blaziken-mega', 136, 637, 392, 479]
+            },
+            { 
+                id: 2, name: 'Lau', type: 'Agua', 
+                color: '#6890F0', colorLight: '#4FC3F7', emoji: '💧',
+                avatar: 'imagenes/cabeza/LauHead.png',
+                description: 'Experto en las artes acuáticas y maestro de las mareas. Su conexión con el agua es profunda y poderosa, capaz de controlar los océanos.',
+                team: [382, 131, 134, 230, 395, 186]
+            },
+            { 
+                id: 3, name: 'Alice', type: 'Planta', 
+                color: '#78C850', colorLight: '#8BC34A', emoji: '🌿',
+                avatar: 'imagenes/cabeza/AliceHead.png',
+                description: 'Guardián de los bosques y maestro de la naturaleza. Su sabiduría es tan antigua como los árboles que protege.',
+                team: [3, 71, 154, 254, 389, 497]
+            },
+            { 
+                id: 4, name: 'LiderPorDefinir', type: 'Eléctrico', 
+                color: '#F8D030', colorLight: '#FFEB3B', emoji: '⚡',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Veloz como el rayo y poderoso como la tormenta. Su energía eléctrica es inagotable y su velocidad es legendaria.',
+                team: [26, 125, 135, 181, 405, 658]
+            },
+            { 
+                id: 5, name: 'LiderPorDefinir', type: 'Hielo', 
+                color: '#98D8D8', colorLight: '#B2EBF2', emoji: '❄️',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Señor del invierno y maestro del hielo. Su frialdad en combate es legendaria y su corazón es tan frío como las montañas que habita.',
+                team: [91, 131, 144, 378, 473, 713]
+            },
+            { 
+                id: 6, name: 'Gary', type: 'Lucha', 
+                color: '#C03028', colorLight: '#E57373', emoji: '🥊',
+                avatar: 'imagenes/cabeza/GaryTheMachapa.png',
+                description: 'Guerrero incansable con un espíritu indomable. Su fuerza física y determinación son admiradas por todos.',
+                team: ['blaziken-mega', 297, 475, 448]
+            },
+            { 
+                id: 7, name: 'LiderPorDefinir', type: 'Veneno', 
+                color: '#A040A0', colorLight: '#CE93D8', emoji: '☠️',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Maestro de los venenos y las toxinas. Su astucia es tan peligrosa como sus ataques.',
+                team: [3, 31, 34, 169, 454, 691]
+            },
+            { 
+                id: 8, name: 'LiderPorDefinir', type: 'Tierra', 
+                color: '#E0C068', colorLight: '#FFD54F', emoji: '🏔️',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Firme como la montaña y sólido como la roca. Su conexión con la tierra es inquebrantable.',
+                team: [34, 105, 330, 389, 472, 660]
+            },
+            { 
+                id: 9, name: 'LiderPorDefinir', type: 'Volador', 
+                color: '#A890F0', colorLight: '#B39DDB', emoji: '🕊️',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Señor de los cielos y maestro del viento. Su libertad es tan vasta como el cielo que surca.',
+                team: [18, 130, 149, 169, 398, 701]
+            },
+            { 
+                id: 10, name: 'LiderPorDefinir', type: 'Psíquico', 
+                color: '#F85888', colorLight: '#F48FB1', emoji: '🔮',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Mente brillante con poderes extraordinarios. Puede leer los pensamientos y manipular la realidad.',
+                team: [65, 97, 196, 282, 475, 579]
+            },
+            { 
+                id: 11, name: 'LiderPorDefinir', type: 'Bicho', 
+                color: '#A8B820', colorLight: '#CDDC39', emoji: '🐛',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Maestro de los insectos y las criaturas pequeñas. Su enjambre es imparable.',
+                team: [15, 123, 212, 213, 291, 589]
+            },
+            { 
+                id: 12, name: 'LiderPorDefinir', type: 'Roca', 
+                color: '#B8A038', colorLight: '#D4A574', emoji: '🪨',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Duro como el diamante e impenetrable como la montaña. Su defensa es legendaria.',
+                team: [76, 95, 142, 248, 464, 526]
+            },
+            { 
+                id: 13, name: 'LiderPorDefinir', type: 'Fantasma', 
+                color: '#705898', colorLight: '#9575CD', emoji: '👻',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Misterioso y enigmático. Habita entre el mundo de los vivos y los muertos.',
+                team: [94, 200, 302, 356, 477, 623]
+            },
+            { 
+                id: 14, name: 'LiderPorDefinir', type: 'Dragón', 
+                color: '#7038F8', colorLight: '#9C27B0', emoji: '🐉',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'El más poderoso de todos los líderes. Su linaje dragónino es legendario.',
+                team: [149, 230, 330, 373, 445, 784]
+            },
+            { 
+                id: 15, name: 'LiderPorDefinir', type: 'Siniestro', 
+                color: '#705848', colorLight: '#8D6E63', emoji: '🌑',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Maestro de la oscuridad y las sombras. Acecha en las tinieblas con astucia letal.',
+                team: [94, 197, 229, 275, 359, 491]
+            },
+            { 
+                id: 16, name: 'LiderPorDefinir', type: 'Acero', 
+                color: '#B8B8D0', colorLight: '#CFD8DC', emoji: '⚙️',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Frío y calculador como el acero. Su armadura es impenetrable y su mente es una máquina.',
+                team: [208, 227, 306, 379, 462, 530]
+            },
+            { 
+                id: 17, name: 'LiderPorDefinir', type: 'Hada', 
+                color: '#EE99AC', colorLight: '#F8BBD0', emoji: '🧚',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Mágico y encantador. Su presencia trae alegría y su poder es místico.',
+                team: [36, 40, 176, 282, 468, 700]
+            },
+            { 
+                id: 18, name: 'LiderPorDefinir', type: 'Normal', 
+                color: '#A8A878', colorLight: '#BCAAA4', emoji: '⭐',
+                avatar: 'imagenes/cabeza/InterrogacionHead.png',
+                description: 'Versátil y adaptable. Su fuerza reside en la simplicidad y la constancia.',
+                team: [20, 143, 233, 289, 474, 735]
+            }
+        ];
+
+        // Miembros con campo blissysTeam para indicar quién tiene equipo Blissys
+        const members = [
+            { name: 'Joxkko', online: true, avatar: 'imagenes/cabeza/JoxHead.png', blissysTeam: true },
+            { name: 'MashineOs', online: false, avatar: 'imagenes/cabeza/MashiHead.png', blissysTeam: false },
+            { name: 'KingToxina', online: true, avatar: 'imagenes/cabeza/ToxinaHead.png', blissysTeam: false },
+            { name: 'SOYDMEZA', online: true, avatar: 'imagenes/cabeza/MezaHead.png', blissysTeam: false },
+            { name: 'Frostgc17', online: true, avatar: 'imagenes/cabeza/FrostHead.png', blissysTeam: false },
+            { name: 'oAlicee', online: true, avatar: 'imagenes/cabeza/AliceHead.png', blissysTeam: false },
+            { name: 'Marnegrillo', online: false, avatar: 'imagenes/cabeza/MarnegrilloHead.png', blissysTeam: false },
+            { name: 'Srarthuro', online: true, avatar: 'imagenes/cabeza/SrarthuroHead.png', blissysTeam: false },
+            { name: 'Dethsumi', online: true, avatar: 'imagenes/cabeza/DethsumiHead.png', blissysTeam: false },
+            { name: 'Marval_93', online: true, avatar: 'imagenes/cabeza/Marval_93Head.png', blissysTeam: false },
+            { name: 'aasdepanama ', online: true, avatar: 'imagenes/cabeza/noPremiumHead.png', blissysTeam: false },
+            { name: 'BETO16_', online: true, avatar: 'imagenes/cabeza/BETO16_Head.png', blissysTeam: false },
+            { name: 'Jmiguel02', online: true, avatar: 'imagenes/cabeza/Jmiguel02.png', blissysTeam: false },
+            { name: 'Fredyssj', online: true, avatar: 'imagenes/cabeza/Fredyssj.png', blissysTeam: false },
+            { name: 'Jul1anXs', online: true, avatar: 'imagenes/cabeza/Jul1anXs.png', blissysTeam: false },
+            { name: 'JhonChuco', online: true, avatar: 'imagenes/cabeza/JhonChuco.png', blissysTeam: false },
+            { name: 'Wawwi', online: true, avatar: 'imagenes/cabeza/Wawwi.png', blissysTeam: false },
+            { name: 'RuntyImpostor', online: true, avatar: 'imagenes/cabeza/RuntyImpostor.png', blissysTeam: false },
+            { name: 'HazzMandujano', online: true, avatar: 'imagenes/cabeza/HazzMandujano.png', blissysTeam: false },
+            { name: '69_Venancio_69 / Piter', online: true, avatar: 'imagenes/cabeza/Piter.png', blissysTeam: false },
+            { name: 'Eazy_e210625', online: true, avatar: 'imagenes/cabeza/Eazy_e210625.png', blissysTeam: false },
+            { name: 'PanCALVO', online: true, avatar: 'imagenes/cabeza/PanCALVO.png', blissysTeam: false },
+            { name: 'RockyGamer1986', online: true, avatar: 'imagenes/cabeza/RockyGamer1986.png', blissysTeam: false },
+            { name: 'dukesryu / Carlos', online: true, avatar: 'imagenes/cabeza/dukesryu.png', blissysTeam: false },
+            { name: 'Alaan30', online: true, avatar: 'imagenes/cabeza/noPremiumHead.png', blissysTeam: false },
+            { name: 'Jesulini023', online: true, avatar: 'imagenes/cabeza/noPremiumHead.png', blissysTeam: false },
+            { name: 'Fernan2708', online: true, avatar: 'imagenes/cabeza/Fernan2708.png', blissysTeam: false },
+            { name: 'alonso234 ', online: true, avatar: 'imagenes/cabeza/alonso234.png', blissysTeam: false },
+            { name: 'VortexK91', online: true, avatar: 'imagenes/cabeza/noPremiumHead.png', blissysTeam: false },
+        ];
+
+        const API_BASE = 'https://pokeapi.co/api/v2';
+
+        const typeColors = {
+            normal: '#A8A878', fire: '#F08030', water: '#6890F0',
+            electric: '#F8D030', grass: '#78C850', ice: '#98D8D8',
+            fighting: '#C03028', poison: '#A040A0', ground: '#E0C068',
+            flying: '#A890F0', psychic: '#F85888', bug: '#A8B820',
+            rock: '#B8A038', ghost: '#705898', dragon: '#7038F8',
+            dark: '#705848', steel: '#B8B8D0', fairy: '#EE99AC'
+        };
+
+        const typeNamesES = {
+            normal: 'Normal', fire: 'Fuego', water: 'Agua',
+            electric: 'Eléctrico', grass: 'Planta', ice: 'Hielo',
+            fighting: 'Lucha', poison: 'Veneno', ground: 'Tierra',
+            flying: 'Volador', psychic: 'Psíquico', bug: 'Bicho',
+            rock: 'Roca', ghost: 'Fantasma', dragon: 'Dragón',
+            dark: 'Siniestro', steel: 'Acero', fairy: 'Hada'
+        };
+
+        const statNamesES = {
+            'hp': 'PS', 'attack': 'Ataque', 'defense': 'Defensa',
+            'special-attack': 'At. Esp.', 'special-defense': 'Def. Esp.', 'speed': 'Velocidad'
+        };
+
+        const pokemonCache = {};
+
+        async function getPokemon(id) {
+            if (pokemonCache[id]) return pokemonCache[id];
+            try {
+                const response = await fetch(`${API_BASE}/pokemon/${id}`);
+                if (!response.ok) throw new Error('No encontrado');
+                const data = await response.json();
+                pokemonCache[id] = data;
+                return data;
+            } catch (error) {
+                console.error('Error cargando Pokémon:', error);
+                return null;
+            }
+        }
+
+        async function getPokemonTeam(teamIds) {
+            const promises = teamIds.map(id => getPokemon(id));
+            const results = await Promise.all(promises);
+            return results.filter(p => p !== null);
+        }
+
+        async function getPokemonDescription(id) {
+            try {
+                const response = await fetch(`${API_BASE}/pokemon-species/${id}`);
+                const data = await response.json();
+                const spanish = data.flavor_text_entries.find(e => e.language.name === 'es');
+                return spanish ? spanish.flavor_text.replace(/\f/g, ' ') : 'Sin descripción disponible';
+            } catch (error) {
+                return 'Error al cargar descripción';
+            }
+        }
+
+        async function showGymLeaderDetails(leaderId) {
+            const leader = gymLeaders.find(l => l.id === leaderId);
+            if (!leader) return;
+
+            const modal = document.getElementById('gymModal');
+            const content = document.getElementById('gymModalContent');
+
+            content.innerHTML = `
+                <div class="modal-header" style="--gym-color: ${leader.color}; --gym-color-light: ${leader.colorLight};">
+                    <button class="close-modal" onclick="closeGymModal()">×</button>
+                    <div class="modal-avatar">
+                        <img src="${leader.avatar}" alt="${leader.name}">
+                    </div>
+                    <h2 class="modal-name">${leader.name}</h2>
+                    <span class="modal-type">Líder de ${leader.type}</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">📖 Descripción</h3>
+                        <p class="modal-description">${leader.description}</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">🎮 Equipo Pokémon</h3>
+                        <div class="team-note">
+                            <span class="team-note-icon">🏆</span>
+                            <div class="team-note-text">
+                                Este es el equipo con que <strong>ganó al líder de gimnasio</strong> o <strong>ganó el torneo</strong>. El líder podrá cambiar de equipo.
+                            </div>
+                        </div>
+                        <div class="pokemon-team" id="pokemonTeam">
+                            <div class="empty-team">
+                                <div class="loading-spinner"></div>
+                                <p>Cargando equipo desde PokéAPI...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            const team = await getPokemonTeam(leader.team);
+            renderPokemonTeam(team);
+        }
+
+        function renderPokemonTeam(team) {
+            const container = document.getElementById('pokemonTeam');
+            
+            if (team.length === 0) {
+                container.innerHTML = `<div class="empty-team"><p>🔍 No se pudo cargar el equipo</p></div>`;
+                return;
+            }
+
+            container.innerHTML = team.map(pokemon => {
+                const sprite = pokemon.sprites.other['official-artwork'].front_default || 
+                              pokemon.sprites.front_default;
+                const mainType = pokemon.types[0].type.name;
+                const typeColor = typeColors[mainType] || '#666';
+                
+                return `
+                    <div class="pokemon-card" onclick="showPokemonDetails(${pokemon.id})">
+                        <div class="pokemon-image" style="background: linear-gradient(135deg, ${typeColor}20, ${typeColor}05);">
+                            <img src="${sprite}" alt="${pokemon.name}" loading="lazy">
+                        </div>
+                        <div class="pokemon-name">${pokemon.name}</div>
+                        <div class="pokemon-id">#${String(pokemon.id).padStart(3, '0')}</div>
+                        <div class="pokemon-types">
+                            ${pokemon.types.map(t => `
+                                <span class="pokemon-type-badge" style="background: ${typeColors[t.type.name]}">
+                                    ${typeNamesES[t.type.name]}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function showPokemonDetails(id) {
+            const pokemon = await getPokemon(id);
+            if (!pokemon) return;
+
+            const modal = document.getElementById('gymModal');
+            const content = document.getElementById('gymModalContent');
+
+            const sprite = pokemon.sprites.other['official-artwork'].front_default || 
+                          pokemon.sprites.front_default;
+            const mainType = pokemon.types[0].type.name;
+            const typeColor = typeColors[mainType];
+
+            content.innerHTML = `
+                <div class="modal-header" style="--gym-color: ${typeColor}; --gym-color-light: ${typeColor};">
+                    <button class="close-modal" onclick="closeGymModal()">×</button>
+                    <div class="modal-avatar">
+                        <img src="${sprite}" alt="${pokemon.name}">
+                    </div>
+                    <h2 class="modal-name">${pokemon.name}</h2>
+                    <span class="modal-type">#${String(pokemon.id).padStart(3, '0')}</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">📖 Descripción</h3>
+                        <p class="modal-description" id="pokemonDescription">
+                            <div class="loading-spinner"></div>
+                            <p>Cargando descripción...</p>
+                        </p>
+                    </div>
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">ℹ️ Información</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Altura</div>
+                                <div class="info-value">${(pokemon.height / 10).toFixed(1)} m</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Peso</div>
+                                <div class="info-value">${(pokemon.weight / 10).toFixed(1)} kg</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Exp. Base</div>
+                                <div class="info-value">${pokemon.base_experience || 'N/A'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Tipos</div>
+                                <div style="display: flex; gap: 0.3rem; flex-wrap: wrap; justify-content: center; margin-top: 0.3rem;">
+                                    ${pokemon.types.map(t => `
+                                        <span class="pokemon-type-badge" style="background: ${typeColors[t.type.name]}">
+                                            ${typeNamesES[t.type.name]}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">📊 Estadísticas Base</h3>
+                        <div class="stat-bar-container" style="--gym-color: ${typeColor}; --gym-color-light: ${typeColor};">
+                            ${pokemon.stats.map(s => `
+                                <div class="stat-bar-row">
+                                    <div class="stat-bar-name">${statNamesES[s.stat.name]}</div>
+                                    <div class="stat-bar-value">${s.base_stat}</div>
+                                    <div class="stat-bar-bg">
+                                        <div class="stat-bar-fill" style="width: ${Math.min((s.base_stat / 255) * 100, 100)}%"></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">✨ Habilidades</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            ${pokemon.abilities.map(a => `
+                                <span style="padding: 0.5rem 1rem; background: var(--bg-dark); border: 1px solid ${a.is_hidden ? typeColor : 'var(--border)'}; border-radius: 20px; color: var(--text-primary); text-transform: capitalize; font-size: 0.9rem;">
+                                    ${a.ability.name.replace('-', ' ')}${a.is_hidden ? ' (Oculta)' : ''}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const description = await getPokemonDescription(id);
+            document.getElementById('pokemonDescription').innerHTML = description;
+        }
+
+        function closeGymModal() {
+            document.getElementById('gymModal').classList.remove('active');
+        }
+
+        document.getElementById('gymModal').addEventListener('click', function(e) {
+            if (e.target === this) closeGymModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeGymModal();
+        });
+
+        function renderLeaders() {
+            const grid = document.getElementById('leadersGrid');
+            grid.innerHTML = leaders.map(leader => `
+                <div class="leader-card">
+                    <div class="leader-avatar">
+                        <span class="leader-crown">${leader.emoji}</span>
+                        <img src="${leader.avatar}" alt="${leader.name}" class="avatar-img">
+                    </div>
+                    <h3 class="leader-name">${leader.name}</h3>
+                    <span class="leader-role">Líder Supremo</span>
+                    <p class="leader-description">${leader.description}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderCoLeaders() {
+            const grid = document.getElementById('coleadersGrid');
+            grid.innerHTML = coLeaders.map(co => `
+                <div class="coleader-card">
+                    <div class="coleader-avatar">
+                        <span class="coleader-star">${co.emoji}</span>
+                        <img src="${co.avatar}" alt="${co.name}" class="avatar-img">
+                    </div>
+                    <h3 class="coleader-name">${co.name}</h3>
+                    <span class="coleader-role">Co-Líder</span>
+                </div>
+            `).join('');
+        }
+
+        function renderGymLeaders() {
+            const grid = document.getElementById('gymGrid');
+            grid.innerHTML = gymLeaders.map(leader => `
+                <div class="gym-card" onclick="showGymLeaderDetails(${leader.id})" 
+                     style="--gym-color: ${leader.color}; --gym-color-light: ${leader.colorLight};">
+                    <div class="gym-avatar-wrapper">
+                        <div class="gym-ring"></div>
+                        <div class="gym-avatar">
+                            <img src="${leader.avatar}" alt="${leader.name}" class="avatar-img">
+                        </div>
+                    </div>
+                    <span class="gym-type-badge">${leader.type}</span>
+                    <h3 class="gym-name">${leader.name}</h3>
+                    <p class="gym-title">Líder de ${leader.type}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderMembers() {
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = members.map(member => {
+                const hasBlissys = member.blissysTeam === true;
+                return `
+                    <div class="member-card ${hasBlissys ? 'blissys-team' : ''}">
+                        ${hasBlissys ? `
+                            <div class="blissys-tooltip">
+                                <strong>🌟 Equipo Blissys</strong>
+                                Puede ayudar a subir de nivel a tus Pokémon
+                            </div>
+                        ` : ''}
+                        <div class="member-avatar">
+                            ${hasBlissys ? '<div class="blissys-badge">🌟</div>' : ''}
+                            <img src="${member.avatar}" alt="${member.name}" class="avatar-img">
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">${member.name}</div>
+                            <div class="member-role">${hasBlissys ? '✨ Equipo Blissys' : 'Miembro'}</div>
+                        </div>
+                        <div class="${member.online ? 'online-dot' : 'offline-dot'}"></div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        renderLeaders();
+        renderCoLeaders();
+        renderGymLeaders();
+        renderMembers();
+    </script>
+</body>
+</html>
